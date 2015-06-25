@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.welcome_gui);
 	}
 
 	@Override
@@ -30,5 +31,17 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void btnSpielen (View view){
+		setContentView(R.layout.game_gui); // Funktion Spielen-Button im Startmenu
+	}
+	
+	public void btnRegeln (View view){
+		setContentView(R.layout.rules_gui); // Funktion Regeln-Button im Startmenu
+	}
+	
+	public void btnZurueck (View view){
+		setContentView(R.layout.welcome_gui); // Funktion Zurück-Button bei den Spielregeln
 	}
 }
