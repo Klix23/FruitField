@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+	<FrameLayout 
+	    android:layout_width="match_parent" 
+	    android:layout_height="wrap_content" 
+	    android:paddingBottom="5dp" 
+	    android:paddingLeft="90dp" 
+	    android:paddingTop="10dp" 
+	    tools:ignore="RtlSymmetry,RtlHardcoded" >
+
+            <ImageView 
+                android:id="@+id/imgLogo" 
+                android:layout_width="130dp" 
+                android:layout_height="63dp" 
+                android:src="@drawable/logo" 
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+        
+        <FrameLayout 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:layout_weight="0.47" 
+            tools:ignore="InefficientWeight" >
+
+            	<ImageView 
+                	android:id="@+id/imgHintergrund" 
+                	android:layout_width="match_parent" 
+                	android:layout_height="391dp" 
+                	android:src="@drawable/background" 
+                	tools:ignore="ContentDescription" />
+
+            <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent" android:paddingLeft="13dp" android:paddingTop="15dp" tools:ignore="RtlSymmetry,RtlHardcoded">
+
+                <GridLayout 
+                    android:layout_width="294dp" 
+                    android:layout_height="368dp" 
+                    android:columnCount="4" 
+                    android:rowCount="5" >
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld11" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:background="@drawable/soil" />
+                    
+                    <ImageButton 
+                        android:id="@+id/btnFeld12" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:background="@drawable/soil" />
+                    
+                    <ImageButton 
+                        android:id="@+id/btnFeld13" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:background="@drawable/soil" />
+                    
+                    <ImageButton 
+                        android:id="@+id/btnFeld14" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:background="@drawable/soil" />
+                    
+                    <ImageButton 
+                        android:id="@+id/btnFeld21" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:background="@drawable/soil" />
+                    
+                    <ImageButton 
+                        android:id="@+id/btnFeld22" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:background="@drawable/soil" />
+                    
+                    <ImageButton 
+                        android:id="@+id/btnFeld23" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:background="@drawable/soil" />
+                    
+                    <ImageButton 
+                        android:id="@+id/btnFeld24" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:background="@drawable/soil" />
+                    
+                    <ImageButton 
+                        android:id="@+id/btnFeld31" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld32" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld33" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld34" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld41" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld42" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld43" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld44" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld51" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld52" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld53" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                    <ImageButton 
+                        android:id="@+id/btnFeld54" 
+                        android:layout_width="73dp" 
+                        android:layout_height="73dp" 
+                        android:layout_gravity="left" 
+                        android:background="@drawable/soil" />
+
+                </GridLayout>
+            
+            </FrameLayout>
+
+            <EditText 
+                android:id="@+id/dateZeit" 
+                android:layout_width="wrap_content" 
+                android:layout_height="match_parent" 
+                android:ems="10" 
+                android:paddingTop="395dp" 
+                android:text="Time: 00:00:00" 
+                android:textSize="12dp" 
+                android:textStyle="bold" 
+                tools:ignore="TextFields,HardcodedText,SpUsage" >
+
+                <requestFocus/>
+                
+            </EditText>
+
+            <EditText 
+                android:id="@+id/intKlicks" 
+                android:layout_width="296dp" 
+                android:layout_height="match_parent" 
+                android:ems="10" 
+                android:paddingLeft="200dp" 
+                android:paddingTop="395dp" 
+                android:text="Klicks: 0" 
+                android:textSize="12dp" 
+                android:textStyle="bold" 
+                tools:ignore="RtlSymmetry,TextFields,HardcodedText,RtlHardcoded,SpUsage" />
+
+        </FrameLayout>
+        
+</LinearLayout>
