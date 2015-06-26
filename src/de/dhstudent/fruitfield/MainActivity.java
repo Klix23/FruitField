@@ -63,7 +63,8 @@ public class MainActivity extends Activity {
 		//char Zeile = (stringKoordinaten.charAt(1));
 		char Spalte =(stringKoordinaten.charAt(2));
 		
-		Toast.makeText(getApplicationContext(), stringKoordinaten.substring(stringKoordinaten.length() - 1) , Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getApplicationContext(), stringKoordinaten.substring(stringKoordinaten.length() - 2) + stringKoordinaten.substring(stringKoordinaten.length() - 1), Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), (stringKoordinaten.charAt(stringKoordinaten.length() - 2)) + " " + (stringKoordinaten.charAt(stringKoordinaten.length() - 1)), Toast.LENGTH_SHORT).show();
 	}
 	
 }
