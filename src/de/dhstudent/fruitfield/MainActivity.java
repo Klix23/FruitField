@@ -56,13 +56,13 @@ public class MainActivity extends Activity {
 		//ImageButton button = (ImageButton)findViewById(view.getId());
 		//button.setBackgroundResource(R.drawable.plant);
 		String stringKoordinaten = IdAsString.substring(2);
-		//int Zeile = Character.getNumericValue(stringKoordinaten.charAt(1));
+		int Zeile = Character.getNumericValue(stringKoordinaten.charAt(1));
 		//int Spalte = Character.getNumericValue(stringKoordinaten.charAt(2));
 		
-		char Zeile = (stringKoordinaten.charAt(1));
+		//char Zeile = (stringKoordinaten.charAt(1));
 		char Spalte =(stringKoordinaten.charAt(2));
 		
-		Toast.makeText(getApplicationContext(),     , Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), stringKoordinaten , Toast.LENGTH_SHORT).show();
 	}
 	
 }
