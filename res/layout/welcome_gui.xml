@@ -18,14 +18,6 @@
     	android:paddingTop="28dp"
     	android:src="@drawable/logo" />
 
-	<ImageView
-   		android:id="@+id/imgGras"
-    	android:layout_width="wrap_content"
-   		android:layout_height="wrap_content"
-    	android:layout_alignParentBottom="true"
-    	android:gravity="center"
-    	android:background="@drawable/gras" />
-
 	<Button
     	android:id="@+id/btnRegeln"
     	style="?android:attr/buttonStyleSmall"
@@ -38,7 +30,7 @@
     	android:minHeight="47dip"
     	android:onClick="btnRegeln"
     	android:text="Regeln"
-    	android:textSize="23sp"
+    	android:textSize="23dp"
     	android:textStyle="bold" />
 
 	<Button
@@ -51,7 +43,15 @@
 	    android:minHeight="47dip"
 	    android:onClick="btnSpielen"
 	    android:text="Spielen"
-	    android:textSize="23sp"
+	    android:textSize="23dp"
 	    android:textStyle="bold" />
+	
+	<ImageView
+   		android:id="@+id/imgGras"
+    	android:layout_width="wrap_content"
+   		android:layout_height="wrap_content"
+    	android:layout_alignParentBottom="true"
+    	android:gravity="center"
+    	android:background="@drawable/gras" />
 
 </RelativeLayout>
