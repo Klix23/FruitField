@@ -3,6 +3,8 @@
  */
 package de.dhstudent.fruitfield;
 
+import android.widget.ImageButton;
+
 /**
  * @author Ronja
  *
@@ -52,7 +54,8 @@ public class Beet {
 			ChangeBeetUnten(beetUnten);
 		}
 		
-		
+		//Kommentar von superhero1:
+		//Return statement fehlt
 		
 	}
 	
@@ -83,7 +86,7 @@ public class Beet {
 		{
 			bR.Zustand = 1;		//Wenn der Zustand auf 0  steht wechselt er in den Zustand des Keimlings
 			// Hier muss noch das Keimling Bild rein
-			ImageButton button = (ImageButton)findViewById(view.getId());
+			ImageButton button = (ImageButton)findViewById(view.getId()); //superhero1: view verursacht einen Error
 	        button.setBackgroundResource(R.drawable.plant);
 		}
 		else if (bR.Zustand == 1)
