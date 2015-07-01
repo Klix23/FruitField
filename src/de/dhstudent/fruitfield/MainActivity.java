@@ -58,13 +58,14 @@ public class MainActivity extends Activity {
 		String stringKoordinaten = IdAsString.substring(2);
 		
 		int Zeile = Character.getNumericValue(stringKoordinaten.charAt(1));
-		//int Spalte = Character.getNumericValue(stringKoordinaten.charAt(2));
+		int Spalte = Character.getNumericValue(stringKoordinaten.charAt(2));
 		
+	}
 		//char Zeile = (stringKoordinaten.charAt(1));
-		char Spalte =(stringKoordinaten.charAt(2));
+		//char Spalte =(stringKoordinaten.charAt(2));
 		
-		//Toast.makeText(getApplicationContext(), stringKoordinaten.substring(stringKoordinaten.length() - 2) + stringKoordinaten.substring(stringKoordinaten.length() - 1), Toast.LENGTH_SHORT).show();
-		Toast.makeText(getApplicationContext(), (stringKoordinaten.charAt(stringKoordinaten.length() - 2)) + " " + (stringKoordinaten.charAt(stringKoordinaten.length() - 1)), Toast.LENGTH_SHORT).show();
+	
+	
 	}
 	
-}
+
