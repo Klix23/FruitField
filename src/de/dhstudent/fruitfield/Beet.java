@@ -35,7 +35,7 @@ public class Beet {
 		
 	}
 	
-	public Beet FindNachbarn(){
+	public void FindNachbarn(){
 		Beet beetLinks = new Beet();
 		Beet beetRechts= new Beet();
 		Beet beetOben = new Beet();
