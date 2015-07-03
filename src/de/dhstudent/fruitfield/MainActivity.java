@@ -41,6 +41,8 @@ public class MainActivity extends Activity {
 	
 	public void btnSpielen (View view){
 		setContentView(R.layout.game_gui); // Funktion Spielen-Button im Startmenu
+		Spielfeld spielfeld = new Spielfeld();
+		spielfeld.befülleSpieldfeld();
 	}
 	
 	public void btnRegeln (View view){
@@ -52,13 +54,22 @@ public class MainActivity extends Activity {
 	}
 	
 	public void Klick(View view){
+		//View-Id wird dem String IdAsString zugewiesen
 		String IdAsString = view.getResources().getResourceName(view.getId());
 		//ImageButton button = (ImageButton)findViewById(view.getId());
 		//button.setBackgroundResource(R.drawable.plant);
+		
+		//Kürzen von IdAsString auf die letzten zwei Chars
 		String stringKoordinaten = IdAsString.substring(2);
 		
+		//Casten der jeweiligen Chars in Int
 		int Zeile = Character.getNumericValue(stringKoordinaten.charAt(1));
 		int Spalte = Character.getNumericValue(stringKoordinaten.charAt(2));
+
+		//Anpassen der Zahlenwerte zur Verwendung im Array
+		Zeile--;
+		Spalte--;
+		
 		
 	}
 		//char Zeile = (stringKoordinaten.charAt(1));

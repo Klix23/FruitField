@@ -20,6 +20,17 @@ public class Beet {
 	int Spalte;  // gibt die Spalte des Beetes innerhalb des Spielfelds an
 	int Zeile; //  gibt die Zeile des Beetes innerhalb des Spielfelds an
 	
+	// Konstruktor für befülleSpieldfeld-Methode der Klasse Spielfeld
+	public Beet (int zustand, int spalte, int zeile){
+		Zustand = zustand;
+		Spalte = spalte;
+		Zeile = zeile;
+	}
+	//Standardkonstruktor
+	public Beet() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void ChangeStatus(){
 		if (this.Zustand == 0){
 			this.Zustand = 1;		//Wenn der Zustand auf 0 oder 1, also Erde oder Keimling steht wechselt er in dennächst höheren Zustand
@@ -86,8 +97,8 @@ public class Beet {
 		{
 			bR.Zustand = 1;		//Wenn der Zustand auf 0  steht wechselt er in den Zustand des Keimlings
 			// Hier muss noch das Keimling Bild rein
-			ImageButton button = (ImageButton)findViewById(view.getId()); //superhero1: view verursacht einen Error
-	        button.setBackgroundResource(R.drawable.plant);
+			//ImageButton button = (ImageButton)findViewById(view.getId()); //superhero1: view verursacht einen Error
+	        //button.setBackgroundResource(R.drawable.plant);
 		}
 		else if (bR.Zustand == 1)
 		{
