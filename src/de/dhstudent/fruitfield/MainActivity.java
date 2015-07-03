@@ -95,6 +95,7 @@ public class MainActivity extends Activity {
 											// Startmenu
 		Spielfeld = new int[5][4];
 		Klicks = 0;
+		startTime = 0L;
 		befülleSpieldfeld();
 		startTime = SystemClock.uptimeMillis();
 		timeHandler.postDelayed(updateTimerThread, 0);
