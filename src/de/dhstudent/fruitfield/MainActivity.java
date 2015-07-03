@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	int[][] Spielfeld = null;
+	private int[][] Spielfeld = null;
+	private int Klicks = 0;
 
 	private void changeStatus(int Zeile, int Spalte) {
 		if (Spielfeld[Zeile][Spalte] == 0) {
@@ -28,7 +30,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	void befülleSpieldfeld() {
+	private void befülleSpieldfeld() {
 		// Erzeugen eines zweidminensionalen Arrays "Spielfeld"
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -58,6 +60,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.game_gui); // Funktion Spielen-Button im
 											// Startmenu
 		Spielfeld = new int[5][4];
+		Klicks = 0;
 		befülleSpieldfeld();
 	}
 
@@ -72,6 +75,9 @@ public class MainActivity extends Activity {
 	}
 
 	public void Klick(View view) {
+		//Klick zaehlen
+		countKlick();
+		
 		// View-Id wird dem String IdAsString zugewiesen
 		String IdAsString = view.getResources().getResourceName(view.getId());
 
@@ -82,7 +88,7 @@ public class MainActivity extends Activity {
 		changeKreuz(Zeile - 1, Spalte - 1);
 	}
 
-	public void changeImage(int Zeile, int Spalte) {
+	private void changeImage(int Zeile, int Spalte) {
 		int zustand = Spielfeld[Zeile][Spalte];
 
 		String StringId = idwriter(Zeile, Spalte);
@@ -102,7 +108,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	public void changeKreuz(int Zeile, int Spalte) {
+	private void changeKreuz(int Zeile, int Spalte) {
 		changeStatus(Zeile, Spalte);
 		changeImage(Zeile, Spalte);
 		
@@ -123,8 +129,15 @@ public class MainActivity extends Activity {
 			changeImage(Zeile + 1, Spalte);
 		}
 	}
+	
+	private void countKlick() {
+		Klicks++;
+		final TextView textViewToChange = (TextView) findViewById(R.id.intKlicks);
+		textViewToChange.setText(
+		    "Klicks: " + Klicks);
+	}
 
-	public String idwriter(int Zeile, int Spalte) {
+	private String idwriter(int Zeile, int Spalte) {
 		Zeile++;
 		Spalte++;
 		String stringtemplate = "de.dhstudent.fruitfield:id/btnFeld";
