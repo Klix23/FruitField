@@ -12,7 +12,7 @@ public class MainActivity extends Activity {
 
 	int[][] Spielfeld = null;
 
-	private int ChangeStatus(int Zeile, int Spalte) {
+	private void changeStatus(int Zeile, int Spalte) {
 		if (Spielfeld[Zeile][Spalte] == 0) {
 			Spielfeld[Zeile][Spalte] = 1; // Wenn der Zustand auf 0 steht
 											// wechselt er in den
@@ -26,44 +26,18 @@ public class MainActivity extends Activity {
 											// ist wird das Beet
 			// abgeerntet und Erde bleibt zurueck
 		}
-
-		FindeNachbarn(Zeile, Spalte);
-		return Spielfeld[Zeile][Spalte];
-	}
-
-	private void FindeNachbarn(int Zeile, int Spalte) {
-
-		if (Spalte - 1 > 0) {
-			// beetLinks
-			ChangeStatus(Spalte - 1, Zeile);
-		}
-
-		if (Spalte + 1 < 5) {
-			// beetRechts
-			ChangeStatus(Spalte + 1, Zeile);
-		}
-
-		if (Zeile - 1 > 0) {
-			// beetOben
-			ChangeStatus(Spalte, Zeile - 1);
-		}
-
-		if (Zeile + 1 < 6) {
-			// beetUnten
-			ChangeStatus(Spalte, Zeile + 1);
-		}
 	}
 
 	void befülleSpieldfeld() {
 		// Erzeugen eines zweidminensionalen Arrays "Spielfeld"
-		for (int i = 1; i <= 5; i++) {
-			for (int j = 1; j <= 4; j++) {
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 4; j++) {
 				// Berechnung eines zufälligen Zustandes
 				Random rand = new Random();
 				int intrandomZustand = rand.nextInt(3);
 				// Setzen des Beetes mit zufälligem Zustand. Zeile
 				// und Spalte aus den Schleifenwerten
-				Spielfeld[i-1][j-1] = intrandomZustand;
+				Spielfeld[i][j] = intrandomZustand;
 				changeImage(i, j);
 			}
 		}
@@ -105,11 +79,11 @@ public class MainActivity extends Activity {
 		int Zeile = Integer.parseInt(IdAsString.substring(IdAsString.length() - 2, IdAsString.length() - 1));
 		int Spalte = Integer.parseInt(IdAsString.substring(IdAsString.length() - 1));
 
-		changeKreuz(Zeile, Spalte);
+		changeKreuz(Zeile - 1, Spalte - 1);
 	}
 
 	public void changeImage(int Zeile, int Spalte) {
-		int zustand = Spielfeld[Zeile - 1][Spalte - 1];
+		int zustand = Spielfeld[Zeile][Spalte];
 
 		String StringId = idwriter(Zeile, Spalte);
 		int intId = getResources().getIdentifier(StringId, "id",
@@ -129,23 +103,30 @@ public class MainActivity extends Activity {
 	}
 
 	public void changeKreuz(int Zeile, int Spalte) {
+		changeStatus(Zeile, Spalte);
 		changeImage(Zeile, Spalte);
-
+		
 		if (Spalte - 1 > 0) {
+			changeStatus(Zeile, Spalte - 1);
 			changeImage(Zeile, Spalte - 1);
 		}
-		if (Spalte + 1 < 5) {
+		if (Spalte + 1 < 4) {
+			changeStatus(Zeile, Spalte + 1);
 			changeImage(Zeile, Spalte + 1);
 		}
 		if (Zeile - 1 > 0) {
+			changeStatus(Zeile - 1, Spalte);
 			changeImage(Zeile - 1, Spalte);
 		}
-		if (Zeile + 1 < 6) {
+		if (Zeile + 1 < 5) {
+			changeStatus(Zeile + 1, Spalte);
 			changeImage(Zeile + 1, Spalte);
 		}
 	}
 
 	public String idwriter(int Zeile, int Spalte) {
+		Zeile++;
+		Spalte++;
 		String stringtemplate = "de.dhstudent.fruitfield:id/btnFeld";
 		String result = stringtemplate + Zeile + Spalte;
 		return result;
