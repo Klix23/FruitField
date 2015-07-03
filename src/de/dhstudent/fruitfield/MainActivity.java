@@ -106,7 +106,7 @@ public class MainActivity extends Activity {
 		changeStatus(Zeile, Spalte);
 		changeImage(Zeile, Spalte);
 		
-		if (Spalte - 1 > 0) {
+		if (Spalte - 1 >= 0) {
 			changeStatus(Zeile, Spalte - 1);
 			changeImage(Zeile, Spalte - 1);
 		}
@@ -114,7 +114,7 @@ public class MainActivity extends Activity {
 			changeStatus(Zeile, Spalte + 1);
 			changeImage(Zeile, Spalte + 1);
 		}
-		if (Zeile - 1 > 0) {
+		if (Zeile - 1 >= 0) {
 			changeStatus(Zeile - 1, Spalte);
 			changeImage(Zeile - 1, Spalte);
 		}
