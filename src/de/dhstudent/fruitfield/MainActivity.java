@@ -1,5 +1,7 @@
 package de.dhstudent.fruitfield;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +10,26 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
+
+	Beet[][] Spielfeld = null;
+
+	void befülleSpieldfeld() {
+		// Erzeugen eines zweidminensionalen Arrays "Spielfeld"
+		for (int i = 0; i < 4; i++) {
+
+			for (int j = 0; j < 5; j++) {
+
+				// Berechnung eines zufälligen Zustandes
+				Random rand = new Random();
+				int intrandomZustand = rand.nextInt((2 - 0) + 1) + 0;
+				// Erstellen eines neuen Beetes mit zufälligem Zustand. Zeile
+				// und Spalte aus den Schleifenwerten
+				Beet beet = new Beet(intrandomZustand, i, j, Spielfeld);
+				// Zuweisung des erstellten Beetes zum Spielfeld
+				Spielfeld[i][j] = beet;
+			}
+		}
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +59,8 @@ public class MainActivity extends Activity {
 	public void btnSpielen(View view) {
 		setContentView(R.layout.game_gui); // Funktion Spielen-Button im
 											// Startmenu
-		Spielfeld spielfeld = new Spielfeld();
-		spielfeld.befülleSpieldfeld();
+		Spielfeld = new Beet[4][5];
+		befülleSpieldfeld();
 	}
 
 	public void btnRegeln(View view) {
@@ -63,15 +85,13 @@ public class MainActivity extends Activity {
 		// Casten der jeweiligen Chars in Int
 		int Zeile = Character.getNumericValue(stringKoordinaten.charAt(1));
 		int Spalte = Character.getNumericValue(stringKoordinaten.charAt(2));
-		Spielfeld Feld = new Spielfeld();
-		Feld.befülleSpieldfeld();
 		
-		changeKreuz(view, Zeile, Spalte, Feld);
+		changeKreuz(view, Zeile, Spalte);
 
 	}
 
-	public void changeImage(View view, int Zeile, int Spalte, Spielfeld Feld) {
-		int zustand = Feld.Spielfeld[Spalte][Zeile].zu;
+	public void changeImage(View view, int Zeile, int Spalte) {
+		int zustand = Spielfeld[Spalte][Zeile].zu;
 
 		if (zustand == 0) {
 			ImageButton button = (ImageButton) findViewById(view.getId());
@@ -85,42 +105,42 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	public void changeKreuz(View view, int Zeile, int Spalte, Spielfeld Feld) {
-		changeImage(view, Zeile, Spalte, Feld);
+	public void changeKreuz(View view, int Zeile, int Spalte) {
+		changeImage(view, Zeile, Spalte);
 
 		String StringId = idwriter(view, Zeile, Spalte);
 		int intId = getResources().getIdentifier(StringId, "id",
 				"de.dhstudent.fruitfield");
 		view = findViewById(intId);
-		changeImage(view, Zeile, Spalte, Feld);
+		changeImage(view, Zeile, Spalte);
 
 		if (Spalte - 1 > 0) {
 			String StringId1 = idwriter(view, Zeile, Spalte - 1);
 			int intId1 = getResources().getIdentifier(StringId1, "id",
 					"de.dhstudent.fruitfield");
 			view = findViewById(intId1);
-			changeImage(view, Zeile, Spalte - 1, Feld);
+			changeImage(view, Zeile, Spalte - 1);
 		}
 		if (Spalte + 1 < 6) {
 			String StringId1 = idwriter(view, Zeile, Spalte + 1);
 			int intId1 = getResources().getIdentifier(StringId1, "id",
 					"de.dhstudent.fruitfield");
 			view = findViewById(intId1);
-			changeImage(view, Zeile, Spalte + 1, Feld);
+			changeImage(view, Zeile, Spalte + 1);
 		}
 		if (Zeile - 1 > 0) {
 			String StringId1 = idwriter(view, Zeile - 1, Spalte);
 			int intId1 = getResources().getIdentifier(StringId1, "id",
 					"de.dhstudent.fruitfield");
 			view = findViewById(intId1);
-			changeImage(view, Zeile - 1, Spalte, Feld);
+			changeImage(view, Zeile - 1, Spalte);
 		}
 		if (Zeile + 1 < 5) {
 			String StringId1 = idwriter(view, Zeile + 1, Spalte);
 			int intId1 = getResources().getIdentifier(StringId1, "id",
 					"de.dhstudent.fruitfield");
 			view = findViewById(intId1);
-			changeImage(view, Zeile + 1, Spalte, Feld);
+			changeImage(view, Zeile + 1, Spalte);
 		}
 	}
 
