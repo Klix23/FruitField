@@ -3,14 +3,50 @@ package de.dhstudent.fruitfield;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	int[][] Spielfeld = null;
+	private int[][] Spielfeld = null;
+	private int Klicks = 0;
+	
+	private long startTime = 0L;
+
+	private Handler timeHandler = new Handler();
+
+	long timeInMilliseconds = 0L;
+	long timeSwapBuff = 0L;
+	long updatedTime = 0L;
+	
+	private Runnable updateTimerThread = new Runnable() {
+
+		public void run() {
+
+			timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+
+			updatedTime = timeSwapBuff + timeInMilliseconds;
+
+			int secs = (int) (updatedTime / 1000);
+			int mins = secs / 60;
+			int hrs = mins / 60;
+			secs = secs % 60;
+
+			final TextView Zeittext = (TextView) findViewById(R.id.dateZeit);
+			Zeittext.setText("Time: " + String.format("%02d", hrs) + ":" + String.format("%02d", mins) + ":"
+					+ String.format("%02d", secs));
+			timeHandler.postDelayed(this, 0);
+		}
+
+	};
 
 	private void changeStatus(int Zeile, int Spalte) {
 		if (Spielfeld[Zeile][Spalte] == 0) {
@@ -28,7 +64,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	void befülleSpieldfeld() {
+	private void befülleSpieldfeld() {
 		// Erzeugen eines zweidminensionalen Arrays "Spielfeld"
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -58,7 +94,11 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.game_gui); // Funktion Spielen-Button im
 											// Startmenu
 		Spielfeld = new int[5][4];
+		Klicks = 0;
+		startTime = 0L;
 		befülleSpieldfeld();
+		startTime = SystemClock.uptimeMillis();
+		timeHandler.postDelayed(updateTimerThread, 0);
 	}
 
 	public void btnRegeln(View view) {
@@ -72,6 +112,9 @@ public class MainActivity extends Activity {
 	}
 
 	public void Klick(View view) {
+		//Klick zaehlen
+		countKlick();
+		
 		// View-Id wird dem String IdAsString zugewiesen
 		String IdAsString = view.getResources().getResourceName(view.getId());
 
@@ -80,9 +123,29 @@ public class MainActivity extends Activity {
 		int Spalte = Integer.parseInt(IdAsString.substring(IdAsString.length() - 1));
 
 		changeKreuz(Zeile - 1, Spalte - 1);
+		if (winCheck()) {
+			stopTime();
+			showWinDialog();
+		}
 	}
 
-	public void changeImage(int Zeile, int Spalte) {
+	private void showWinDialog() {
+		final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+		dialog.setCancelable(false);
+		dialog.setTitle("Gewonnen!");
+		dialog.setMessage("Fantastisch, du hast es geschafft!");
+		dialog.setNeutralButton("OK", new OnClickListener() {
+			
+			public void onClick(DialogInterface arg0, int arg1) {
+				// TODO Auto-generated method stub
+				dialog.create().dismiss();
+				setContentView(R.layout.welcome_gui);
+			}
+		});
+		dialog.create().show();
+	}
+
+	private void changeImage(int Zeile, int Spalte) {
 		int zustand = Spielfeld[Zeile][Spalte];
 
 		String StringId = idwriter(Zeile, Spalte);
@@ -102,7 +165,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	public void changeKreuz(int Zeile, int Spalte) {
+	private void changeKreuz(int Zeile, int Spalte) {
 		changeStatus(Zeile, Spalte);
 		changeImage(Zeile, Spalte);
 		
@@ -123,8 +186,35 @@ public class MainActivity extends Activity {
 			changeImage(Zeile + 1, Spalte);
 		}
 	}
+	
+	private boolean winCheck() {
+		int check = 0;
+		
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 4; j++) {
+				check += Spielfeld[i][j];
+			}
+		}
+		if(check == 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private void countKlick() {
+		Klicks++;
+		final TextView Klicktext = (TextView) findViewById(R.id.intKlicks);
+		Klicktext.setText(
+		    "Klicks: " + Klicks);
+	}
+	
+	private void stopTime() {
+		timeSwapBuff += timeInMilliseconds;
+		timeHandler.removeCallbacks(updateTimerThread);
+	}
 
-	public String idwriter(int Zeile, int Spalte) {
+	private String idwriter(int Zeile, int Spalte) {
 		Zeile++;
 		Spalte++;
 		String stringtemplate = "de.dhstudent.fruitfield:id/btnFeld";
