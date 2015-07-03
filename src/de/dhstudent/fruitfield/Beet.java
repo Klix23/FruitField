@@ -1,9 +1,5 @@
 package de.dhstudent.fruitfield;
 
-/**
- * @author Ronja
- *
- */
 public class Beet {
 
 	/**
@@ -29,10 +25,10 @@ public class Beet {
 							// Zustand des Keimlings
 		} else if (this.zu == 1) {
 			this.zu = 2; // Wenn der Zustand des Beetes bereits Keimling ist
-							// wächst die Pflanze
+							// waechst die Pflanze
 		} else if (this.zu == 2) {
 			this.zu = 0; // Wenn der Zustand bereits Pflanze ist wird das Beet
-							// abgeerntet und Erde bleibt zurück
+							// abgeerntet und Erde bleibt zurueck
 		}
 
 		this.FindNachbarn();
@@ -68,11 +64,11 @@ public class Beet {
 			b.zu = 1; // Wenn der Zustand auf 0 steht wechselt er in den Zustand
 						// des Keimlings
 		} else if (b.zu == 1) {
-			b.zu = 2; // Wenn der Zustand des Beetes bereits Keimling wächst die
+			b.zu = 2; // Wenn der Zustand des Beetes bereits Keimling waechst die
 						// Pflanze
 		} else if (b.zu == 2) {
 			b.zu = 0; // Wenn der Zustand bereits Pflanze ist wird das Beet
-						// abgeerntet und Erde bleibt zurück
+						// abgeerntet und Erde bleibt zurueck
 		}
 		return b.zu;
 
