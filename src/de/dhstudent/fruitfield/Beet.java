@@ -19,48 +19,60 @@ public class Beet {
 	int ze;
 	int sp;
 	int zu;
+	Beet [][] fe;
 	
 	
-	public Beet(int Zeile, int Spalte, int Zustand){
+	public Beet(int Zeile, int Spalte, int Zustand, Beet [][] Spielfeld ){
 		ze = Zeile;
 		sp = Spalte;
 		zu = Zustand;
+		fe = Spielfeld;
 	}
 	
 	
 	
-	public void ChangeStatus(){
+	public int ChangeStatus(){
 		if (this.zu == 0){
-			this.zu = 1;		//Wenn der Zustand auf 0 oder 1, also Erde oder Keimling steht wechselt er in dennächst höheren Zustand
-			
+			this.zu = 1;		//Wenn der Zustand auf 0  steht wechselt er in den Zustand des Keimlings				
 		}
 		else if (this.zu == 1){
-			this.zu = 2;  // Wenn der Zustand des Beetes bereits Pflanze ist wird dieses abgeerntet und erhält wieder Erde, also 0 als Zustand
+			this.zu = 2;  // Wenn der Zustand des Beetes bereits Keimling ist wächst die Pflanze
 		}
 		else if (this.zu == 2){
-			this.zu = 0;
+			this.zu = 0;   // Wenn der Zustand bereits Pflanze ist wird das Beet abgeerntet und Erde bleibt zurück
 			
 		}
 		
+		this.FindNachbarn();
+		return this.zu;
+		
 	}
 	
+	
+	
+	
 	public void FindNachbarn(){
-		Beet beetLinks = new Beet();
-		Beet beetRechts= new Beet();
-		Beet beetOben = new Beet();
-		Beet beetUnten = new Beet();
+		
 		
 		if (this.sp -1 > 0){
-			ChangeBeetLinks(beetLinks);
+			Beet beetLinks = fe [this.sp-1][this.ze] ;
+			ChangeStatusNachbar(beetLinks);
+			
 		}
-		else if(this.sp + 1 < 5) {
-			ChangeBeetRechts(beetRechts);
+		
+		if(this.sp + 1 < 5) {
+			Beet beetRechts = fe [this.sp+1][this.ze] ;
+			ChangeStatusNachbar(beetRechts);
 		}
-		else if(this.ze - 1 > 0){
-			ChangeBeetOben(beetOben);
+		
+		if(this.ze - 1 > 0){
+			Beet beetOben = fe [this.sp][this.ze-1] ;
+			ChangeStatusNachbar(beetOben);
 		}
-		else if(this.ze + 1 < 6){
-			ChangeBeetUnten(beetUnten);
+		
+		if(this.ze + 1 < 6){
+			Beet beetUnten = fe [this.sp][this.ze+1] ;
+			ChangeStatusNachbar(beetUnten);
 		}
 		
 		//Kommentar von superhero1:
@@ -68,90 +80,26 @@ public class Beet {
 		
 	}
 	
-	public void ChangeBeetLinks(Beet bL){
-		bL.sp = this.sp - 1;
-		bL.ze = this.ze;
-		if (bL.zu == 0 )
-		{
-			bL.zu = 1;		//Wenn der Zustand auf 0  steht wechselt er in den Zustand des Keimlings
-			// Hier muss noch das Keimling Bild rein
+	public int ChangeStatusNachbar(Beet b){
+		if (b.zu == 0){
+			b.zu = 1;		//Wenn der Zustand auf 0  steht wechselt er in den Zustand des Keimlings				
 		}
-		else if (bL.zu == 1)
-		{
-			bL.zu = 2;  // Wenn der Zustand des Beetes bereits Keimling wächst die Pflanze
-			// Hier muss das Pflanze Bild rein
+		else if (b.zu == 1){
+			b.zu = 2;  // Wenn der Zustand des Beetes bereits Keimling wächst die Pflanze
 		}
-		else if (bL.zu == 2)
-		{
-			bL.zu = 0; // Wenn der Zustand bereits Pflanze ist wird das Beet abgeerntet und Erde bleibt zurück
-			// Hier muss das Erde Bild rein
+		else if (b.zu == 2){
+			b.zu = 0;   // Wenn der Zustand bereits Pflanze ist wird das Beet abgeerntet und Erde bleibt zurück
+			
 		}
+		
+		return b.zu;
+		
 	}
-	
-	public void ChangeBeetRechts(Beet bR){
-		bR.sp = this.sp + 1;
-		bR.ze = this.ze;
-		if (bR.zu == 0 )
-		{
-			bR.zu = 1;		//Wenn der Zustand auf 0  steht wechselt er in den Zustand des Keimlings
-			// Hier muss noch das Keimling Bild rein
-			ImageButton button = (ImageButton)findViewById(view.getId()); //superhero1: view verursacht einen Error
-	        button.setBackgroundResource(R.drawable.plant);
-		}
-		else if (bR.zu == 1)
-		{
-			bR.zu = 2;  // Wenn der Zustand des Beetes bereits Keimling wächst die Pflanze
-			// Hier muss das Pflanze Bild rein
-		}
-		else if (bR.zu == 2)
-		{
-			bR.zu = 0; // Wenn der Zustand bereits Pflanze ist wird das Beet abgeerntet und Erde bleibt zurück
-			// Hier muss das Erde Bild rein
-		}
-	}
-	
-	
-	
-	public void ChangeBeetOben(Beet bO){
-		bO.ze = this.ze - 1;
-		bO.sp = this.sp;
-		if (bO.zu == 0 )
-		{
-			bO.zu = 1;		//Wenn der Zustand auf 0  steht wechselt er in den Zustand des Keimlings
-			// Hier muss noch das Keimling Bild rein
-		}
-		else if (bO.zu == 1)
-		{
-			bO.zu = 2;  // Wenn der Zustand des Beetes bereits Keimling wächst die Pflanze
-			// Hier muss das Pflanze Bild rein
-		}
-		else if (bO.zu == 2)
-		{
-			bO.zu = 0; // Wenn der Zustand bereits Pflanze ist wird das Beet abgeerntet und Erde bleibt zurück
-			// Hier muss das Erde Bild rein
-		}
-}
-	
-	public void ChangeBeetUnten(Beet bU){
-		bU.ze = this.ze + 1;
-		bU.sp = this.sp;
-		if (bU.zu == 0 )
-		{
-			bU.zu = 1;		//Wenn der Zustand auf 0  steht wechselt er in den Zustand des Keimlings
-			// Hier muss noch das Keimling Bild rein
-		}
-		else if (bU.zu == 1)
-		{
-			bU.zu = 2;  // Wenn der Zustand des Beetes bereits Keimling wächst die Pflanze
-			// Hier muss das Pflanze Bild rein
-		}
-		else if (bU.zu == 2)
-		{
-			bU.zu = 0; // Wenn der Zustand bereits Pflanze ist wird das Beet abgeerntet und Erde bleibt zurück
-			// Hier muss das Erde Bild rein
-		}
-}
-	
-	 
+
+
+
+	public int getZu() {
+		return zu;
+	} 
 	
 }
