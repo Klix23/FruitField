@@ -11,7 +11,46 @@ import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
 
-	Beet[][] Spielfeld = null;
+	int[][] Spielfeld = null;
+
+	private int ChangeStatus(int Zeile, int Spalte) {
+		if (Spielfeld[Zeile][Spalte] == 0) {
+			Spielfeld[Zeile][Spalte] = 1; // Wenn der Zustand auf 0 steht wechselt er in den
+							// Zustand des Keimlings
+		} else if (Spielfeld[Zeile][Spalte] == 1) {
+			Spielfeld[Zeile][Spalte] = 2; // Wenn der Zustand des Beetes bereits Keimling ist
+							// waechst die Pflanze
+		} else if (Spielfeld[Zeile][Spalte] == 2) {
+			Spielfeld[Zeile][Spalte] = 0; // Wenn der Zustand bereits Pflanze ist wird das Beet
+							// abgeerntet und Erde bleibt zurueck
+		}
+
+		FindeNachbarn(Zeile, Spalte);
+		return Spielfeld[Zeile][Spalte];
+	}
+
+	private void FindeNachbarn(int Zeile, int Spalte) {
+
+		if (Spalte - 1 > 0) {
+			//beetLinks
+			ChangeStatus(Spalte - 1,Zeile);
+		}
+
+		if (Spalte + 1 < 5) {
+			//beetRechts
+			ChangeStatus(Spalte + 1,Zeile);
+		}
+
+		if (Zeile- 1 > 0) {
+			//beetOben
+			ChangeStatus(Spalte, Zeile - 1);
+		}
+
+		if (Zeile + 1 < 6) {
+			//beetUnten
+			ChangeStatus(Spalte, Zeile + 1);
+		}
+	}
 
 	void befülleSpieldfeld() {
 		// Erzeugen eines zweidminensionalen Arrays "Spielfeld"
@@ -22,11 +61,9 @@ public class MainActivity extends Activity {
 				// Berechnung eines zufälligen Zustandes
 				Random rand = new Random();
 				int intrandomZustand = rand.nextInt((2 - 0) + 1) + 0;
-				// Erstellen eines neuen Beetes mit zufälligem Zustand. Zeile
+				// Setzen des Beetes mit zufälligem Zustand. Zeile
 				// und Spalte aus den Schleifenwerten
-				Beet beet = new Beet(intrandomZustand, i, j, Spielfeld);
-				// Zuweisung des erstellten Beetes zum Spielfeld
-				Spielfeld[i][j] = beet;
+				Spielfeld[i][j] = intrandomZustand;
 			}
 		}
 	}
@@ -59,7 +96,7 @@ public class MainActivity extends Activity {
 	public void btnSpielen(View view) {
 		setContentView(R.layout.game_gui); // Funktion Spielen-Button im
 											// Startmenu
-		Spielfeld = new Beet[4][5];
+		Spielfeld = new int[4][5];
 		befülleSpieldfeld();
 	}
 
@@ -85,13 +122,13 @@ public class MainActivity extends Activity {
 		// Casten der jeweiligen Chars in Int
 		int Zeile = Character.getNumericValue(stringKoordinaten.charAt(1));
 		int Spalte = Character.getNumericValue(stringKoordinaten.charAt(2));
-		
+
 		changeKreuz(view, Zeile, Spalte);
 
 	}
 
 	public void changeImage(View view, int Zeile, int Spalte) {
-		int zustand = Spielfeld[Spalte][Zeile].zu;
+		int zustand = Spielfeld[Spalte][Zeile];
 
 		if (zustand == 0) {
 			ImageButton button = (ImageButton) findViewById(view.getId());
