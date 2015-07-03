@@ -11,6 +11,25 @@ import android.widget.ImageButton;
  */
 public class Beet {
 
+	public int getZustand() {
+		return Zustand;
+	}
+	public void setZustand(int zustand) {
+		Zustand = zustand;
+	}
+	public int getSpalte() {
+		return Spalte;
+	}
+	public void setSpalte(int spalte) {
+		Spalte = spalte;
+	}
+	public int getZeile() {
+		return Zeile;
+	}
+	public void setZeile(int zeile) {
+		Zeile = zeile;
+	}
+
 	/**
 	 * @param args
 	 *  author Ronja Burgdoerfer

@@ -59,13 +59,13 @@ public class MainActivity extends Activity {
 		//ImageButton button = (ImageButton)findViewById(view.getId());
 		//button.setBackgroundResource(R.drawable.plant);
 		
-		//Kürzen von IdAsString auf die letzten zwei Chars
+		//Kürzen von IdAsString auf die letzten zwei Chars 
 		String stringKoordinaten = IdAsString.substring(2);
 		
 		//Casten der jeweiligen Chars in Int
 		int Zeile = Character.getNumericValue(stringKoordinaten.charAt(1));
 		int Spalte = Character.getNumericValue(stringKoordinaten.charAt(2));
-
+		
 		//Anpassen der Zahlenwerte zur Verwendung im Array
 		Zeile--;
 		Spalte--;
@@ -75,8 +75,64 @@ public class MainActivity extends Activity {
 		//char Zeile = (stringKoordinaten.charAt(1));
 		//char Spalte =(stringKoordinaten.charAt(2));
 		
+	 public void  changeImage(View view, int Zeile, int Spalte, Spielfeld Feld){
+			int zustand = Feld.Spielfeld[Spalte][Zeile].Zustand;
+			
+			if (zustand == 0){
+				ImageButton button = (ImageButton)findViewById(view.getId());
+				button.setBackgroundResource(R.drawable.soil);}
+			else if (zustand == 1){
+				ImageButton button = (ImageButton)findViewById(view.getId());
+				button.setBackgroundResource(R.drawable.plant);}
+			else if (zustand == 2){
+				ImageButton button = (ImageButton)findViewById(view.getId());
+				button.setBackgroundResource(R.drawable.strawberry);}
+			}
 	
-	
-	}
-	
+	 public void changeKreuz (View view,int Zeile, int Spalte, Spielfeld Feld){
+		 	changeImage(view,Zeile,Spalte,Feld);
+		 		
+		 	String StringId = idwriter(view,Zeile, Spalte );
+	 		int intId = getResources().getIdentifier(StringId,"id","de.dhstudent.fruitfield");
+			//ImageButton button = (ImageButton)findViewById(intId);
+			view = findViewById(intId);
+			changeImage(view,Zeile, Spalte, Feld);
+			
+		 	if (Spalte -1 >0){
+		 		String StringId1 = idwriter(view,Zeile, Spalte -1);
+		 		int intId1 = getResources().getIdentifier(StringId1,"id","de.dhstudent.fruitfield");
+				//ImageButton button = (ImageButton)findViewById(intId);
+				view = findViewById(intId1);
+				changeImage(view,Zeile, Spalte -1, Feld);
+				}
+		 	if (Spalte +1 <6){
+		 		String StringId1 = idwriter(view,Zeile, Spalte +1);
+		 		int intId1 = getResources().getIdentifier(StringId1,"id","de.dhstudent.fruitfield");
+				//ImageButton button = (ImageButton)findViewById(intId);
+				view = findViewById(intId1);
+				changeImage(view,Zeile, Spalte +1, Feld);
+				}
+		 	if (Zeile -1 >0){
+		 		String StringId1 = idwriter(view,Zeile -1, Spalte);
+		 		int intId1 = getResources().getIdentifier(StringId1,"id","de.dhstudent.fruitfield");
+				//ImageButton button = (ImageButton)findViewById(intId);
+				view = findViewById(intId1);
+				changeImage(view,Zeile -1, Spalte, Feld);
+				}
+		 	if (Zeile +1 <5){
+		 		String StringId1 = idwriter(view,Zeile +1, Spalte);
+		 		int intId1 = getResources().getIdentifier(StringId1,"id","de.dhstudent.fruitfield");
+				//ImageButton button = (ImageButton)findViewById(intId);
+				view = findViewById(intId1);
+				changeImage(view,Zeile +1, Spalte, Feld);
+				}
+}
 
+	 	public String idwriter (View view, int Zeile, int Spalte){
+			String IdAsString = view.getResources().getResourceName(view.getId());
+			String stringtemplate = IdAsString.substring(0, IdAsString.length()-2);
+			String result = stringtemplate + Zeile + Spalte;
+			return result;
+
+	 	}
+}
