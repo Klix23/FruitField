@@ -65,11 +65,12 @@ public class MainActivity extends Activity {
 		//Casten der jeweiligen Chars in Int
 		int Zeile = Character.getNumericValue(stringKoordinaten.charAt(1));
 		int Spalte = Character.getNumericValue(stringKoordinaten.charAt(2));
-		
+		Spielfeld Feld = new Spielfeld();
+		Feld.befülleSpieldfeld();
 		//Anpassen der Zahlenwerte zur Verwendung im Array
-		Zeile--;
-		Spalte--;
-		
+		//Zeile--;
+		//Spalte--;
+		changeKreuz(view,Zeile,Spalte,Feld);
 		
 	}
 		//char Zeile = (stringKoordinaten.charAt(1));
