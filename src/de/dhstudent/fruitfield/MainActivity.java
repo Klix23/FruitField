@@ -4,6 +4,8 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,6 +15,35 @@ public class MainActivity extends Activity {
 
 	private int[][] Spielfeld = null;
 	private int Klicks = 0;
+	
+	private long startTime = 0L;
+
+	private Handler timeHandler = new Handler();
+
+	long timeInMilliseconds = 0L;
+	long timeSwapBuff = 0L;
+	long updatedTime = 0L;
+	
+	private Runnable updateTimerThread = new Runnable() {
+
+		public void run() {
+
+			timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+
+			updatedTime = timeSwapBuff + timeInMilliseconds;
+
+			int secs = (int) (updatedTime / 1000);
+			int mins = secs / 60;
+			int hrs = mins / 60;
+			secs = secs % 60;
+
+			final TextView Zeittext = (TextView) findViewById(R.id.dateZeit);
+			Zeittext.setText("Time: " + String.format("%02d", hrs) + ":" + String.format("%02d", mins) + ":"
+					+ String.format("%02d", secs));
+			timeHandler.postDelayed(this, 0);
+		}
+
+	};
 
 	private void changeStatus(int Zeile, int Spalte) {
 		if (Spielfeld[Zeile][Spalte] == 0) {
@@ -62,6 +93,8 @@ public class MainActivity extends Activity {
 		Spielfeld = new int[5][4];
 		Klicks = 0;
 		befülleSpieldfeld();
+		startTime = SystemClock.uptimeMillis();
+		timeHandler.postDelayed(updateTimerThread, 0);
 	}
 
 	public void btnRegeln(View view) {
@@ -132,9 +165,14 @@ public class MainActivity extends Activity {
 	
 	private void countKlick() {
 		Klicks++;
-		final TextView textViewToChange = (TextView) findViewById(R.id.intKlicks);
-		textViewToChange.setText(
+		final TextView Klicktext = (TextView) findViewById(R.id.intKlicks);
+		Klicktext.setText(
 		    "Klicks: " + Klicks);
+	}
+	
+	private void stopTime() {
+		timeSwapBuff += timeInMilliseconds;
+		timeHandler.removeCallbacks(updateTimerThread);
 	}
 
 	private String idwriter(int Zeile, int Spalte) {
