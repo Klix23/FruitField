@@ -54,4 +54,15 @@
     	android:gravity="center"
     	android:background="@drawable/gras" />
 
+	<TextView
+	    android:id="@+id/highscore"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+	    android:text="Highscore:   Time: 00:00:00    Klicks: 0"
+	    android:textColor="#ffffff"
+	    android:textSize="21dp"
+	    android:textStyle="bold" />
+
 </RelativeLayout>
