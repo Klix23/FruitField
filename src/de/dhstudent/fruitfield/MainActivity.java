@@ -3,6 +3,9 @@ package de.dhstudent.fruitfield;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -119,6 +122,26 @@ public class MainActivity extends Activity {
 		int Spalte = Integer.parseInt(IdAsString.substring(IdAsString.length() - 1));
 
 		changeKreuz(Zeile - 1, Spalte - 1);
+		if (winCheck()) {
+			stopTime();
+			showWinDialog();
+		}
+	}
+
+	private void showWinDialog() {
+		final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+		dialog.setCancelable(false);
+		dialog.setTitle("Gewonnen!");
+		dialog.setMessage("Fantastisch, du hast es geschafft!");
+		dialog.setNeutralButton("OK", new OnClickListener() {
+			
+			public void onClick(DialogInterface arg0, int arg1) {
+				// TODO Auto-generated method stub
+				dialog.create().dismiss();
+				setContentView(R.layout.welcome_gui);
+			}
+		});
+		dialog.create().show();
 	}
 
 	private void changeImage(int Zeile, int Spalte) {
@@ -160,6 +183,21 @@ public class MainActivity extends Activity {
 		if (Zeile + 1 < 5) {
 			changeStatus(Zeile + 1, Spalte);
 			changeImage(Zeile + 1, Spalte);
+		}
+	}
+	
+	private boolean winCheck() {
+		int check = 0;
+		
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 4; j++) {
+				check += Spielfeld[i][j];
+			}
+		}
+		if(check == 0){
+			return true;
+		} else {
+			return false;
 		}
 	}
 	
