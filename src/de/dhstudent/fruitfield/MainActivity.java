@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 	long timeSwapBuff = 0L;
 	long updatedTime = 0L;
 	long bestZeit = 0L;
-	int bestKlicks = 10;
+	int bestKlicks = 0;
 	
 	private void loadHighscore(Context context) {
 		final SharedPreferences settings = PreferenceManager
