@@ -4,11 +4,14 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
@@ -22,10 +25,43 @@ public class MainActivity extends Activity {
 	private long startTime = 0L;
 
 	private Handler timeHandler = new Handler();
-
+	
 	long timeInMilliseconds = 0L;
 	long timeSwapBuff = 0L;
 	long updatedTime = 0L;
+	long bestZeit = 0L;
+	int bestKlicks = 10;
+	
+	private void loadHighscore(Context context) {
+		final SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		
+		bestZeit = settings.getLong("bestZeit", 0L);
+		bestKlicks = settings.getInt("bestKlicks", 0);
+		
+		int secs = (int) (bestZeit / 1000);
+		int mins = secs / 60;
+		int hrs = mins / 60;
+		secs = secs % 60;
+
+		final TextView Werte = (TextView) findViewById(R.id.werte);
+		Werte.setText("Zeit: " + String.format("%02d", hrs) + ":" + String.format("%02d", mins) + ":"
+				+ String.format("%02d", secs) + "   Klicks: " + bestKlicks);
+	}
+	
+	private void saveHighscore(Context context) {
+		SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = settings.edit();
+
+		if(updatedTime < bestZeit) {
+			editor.putLong("bestZeit", updatedTime);
+			editor.putInt("bestKlicks", Klicks);
+		} else if (updatedTime == bestZeit && Klicks < bestKlicks) {
+			editor.putInt("bestKlicks", Klicks);
+		}
+		editor.commit();
+	}
 	
 	private Runnable updateTimerThread = new Runnable() {
 
@@ -83,6 +119,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_gui);
+		loadHighscore(getBaseContext());
 	}
 
 	@Override
@@ -125,6 +162,7 @@ public class MainActivity extends Activity {
 		changeKreuz(Zeile - 1, Spalte - 1);
 		if (winCheck()) {
 			stopTime();
+			saveHighscore(getBaseContext());
 			showWinDialog();
 		}
 	}
@@ -137,7 +175,6 @@ public class MainActivity extends Activity {
 		dialog.setNeutralButton("OK", new OnClickListener() {
 			
 			public void onClick(DialogInterface arg0, int arg1) {
-				// TODO Auto-generated method stub
 				dialog.create().dismiss();
 				setContentView(R.layout.welcome_gui);
 			}
