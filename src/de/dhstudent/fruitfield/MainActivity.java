@@ -4,10 +4,9 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -25,16 +24,17 @@ public class MainActivity extends Activity {
 	private long startTime = 0L;
 
 	private Handler timeHandler = new Handler();
+	AlertDialog.Builder dialog = null;
 	
 	long timeInMilliseconds = 0L;
 	long timeSwapBuff = 0L;
 	long updatedTime = 0L;
 	long bestZeit = 0L;
-	int bestKlicks = 10;
+	int bestKlicks = 0;
 	
-	private void loadHighscore(Context context) {
+	private void loadHighscore() {
 		final SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(context);
+				.getDefaultSharedPreferences(getBaseContext());
 		
 		bestZeit = settings.getLong("bestZeit", 0L);
 		bestKlicks = settings.getInt("bestKlicks", 0);
@@ -49,12 +49,12 @@ public class MainActivity extends Activity {
 				+ String.format("%02d", secs) + "   Klicks: " + bestKlicks);
 	}
 	
-	private void saveHighscore(Context context) {
+	private void saveHighscore() {
 		SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(context);
+				.getDefaultSharedPreferences(getBaseContext());
 		SharedPreferences.Editor editor = settings.edit();
 
-		if(updatedTime < bestZeit) {
+		if(timeSwapBuff < bestZeit || bestZeit == 0) {
 			editor.putLong("bestZeit", updatedTime);
 			editor.putInt("bestKlicks", Klicks);
 		} else if (updatedTime == bestZeit && Klicks < bestKlicks) {
@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_gui);
-		loadHighscore(getBaseContext());
+		loadHighscore();
 	}
 
 	@Override
@@ -132,7 +132,6 @@ public class MainActivity extends Activity {
 											// Startmenu
 		Spielfeld = new int[5][4];
 		Klicks = 0;
-		startTime = 0L;
 		befülleSpieldfeld();
 		startTime = SystemClock.uptimeMillis();
 		timeHandler.postDelayed(updateTimerThread, 0);
@@ -162,13 +161,13 @@ public class MainActivity extends Activity {
 		changeKreuz(Zeile - 1, Spalte - 1);
 		if (winCheck()) {
 			stopTime();
-			saveHighscore(getBaseContext());
+			saveHighscore();
 			showWinDialog();
 		}
 	}
 
 	private void showWinDialog() {
-		final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+		dialog = new AlertDialog.Builder(this);
 		dialog.setCancelable(false);
 		dialog.setTitle("Gewonnen!");
 		dialog.setMessage("Fantastisch, du hast es geschafft!");
@@ -177,6 +176,7 @@ public class MainActivity extends Activity {
 			public void onClick(DialogInterface arg0, int arg1) {
 				dialog.create().dismiss();
 				setContentView(R.layout.welcome_gui);
+				loadHighscore();
 			}
 		});
 		dialog.create().show();
