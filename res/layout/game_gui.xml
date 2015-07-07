@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical" >
+    
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="172dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/imgHintergrund"
+        android:layout_width="340dp"
+        android:layout_height="420dp"
+        android:layout_above="@+id/intKlicks"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/background" />
+
+    <GridLayout
+        android:id="@+id/grid"
+        android:layout_width="320dp"
+        android:layout_height="400dp"
+        android:layout_alignTop="@+id/imgHintergrund"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:columnCount="4"
+        android:rowCount="5" >
+
+        <ImageButton
+            android:id="@+id/btnFeld11"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld12"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld13"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld14"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld21"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld22"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld23"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld24"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld31"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld32"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld33"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld34"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld41"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld42"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld43"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld44"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld51"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld52"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld53"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+
+        <ImageButton
+            android:id="@+id/btnFeld54"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:background="@drawable/soil"
+            android:onClick="Klick" />
+    </GridLayout>
+    
+    <TextView
+    	android:id="@+id/dateZeit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/grid"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="13dp"
+        android:layout_marginLeft="36dp"
+        android:text="Time: 00:00:00"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+    
+     <TextView
+        android:id="@+id/intKlicks"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dateZeit"
+        android:layout_alignBottom="@+id/dateZeit"
+        android:layout_alignRight="@+id/imgHintergrund"
+        android:text="Klicks: 0"
+        android:textSize="14dp"
+        android:textStyle="bold" />      
+
+</RelativeLayout>

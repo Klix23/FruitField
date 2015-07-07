@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg" >
+    
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="172dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/logo" />
+    
+    <ImageView
+        android:id="@+id/imgHintergrund"
+        android:layout_width="360dp"
+        android:layout_height="400dp"
+        android:layout_below="@+id/imgLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/background" />
+    
+    <TextView
+        android:id="@+id/tfÜberschrift"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_alignLeft="@+id/tfRegeln"
+        android:layout_alignTop="@+id/imgHintergrund"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="17dp"
+        android:text="Spielregeln"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tfRegeln"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:layout_alignBottom="@+id/imgHintergrund"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:paddingLeft="15dp"
+        android:text="FruitField ist ein Logik-Spiel, das auf einer 4x5-Matrix aufbaut. 
+Die Elemente der Matrix können unterschiedliche Stufen in einer vorbestimmten Reihenfolge (Erde - Pflanze - Frucht) annehmen.
+Zu Beginn des Spiels haben alle Elemente unterschiedliche Stufen.
+
+Ziel ist es, durch geschicktes Anklicken der Elemente, die Stufen so zu durchlaufen, dass zum Schluss alle Früchte abgeerntet sind und nur noch Erde zu sehen ist.
+
+Dabei ist zu berücksichtigen, dass beim Anklicken eines Elementes die horizontalen und vertikalen Nachbarelemente ebenfalls ihren Status ändern."
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/btnZurueck"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="134dp"
+        android:layout_height="28dp"
+        android:layout_alignRight="@+id/tfRegeln"
+        android:layout_below="@+id/imgHintergrund"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/button"
+        android:nextFocusRight="@dimen/activity_horizontal_margin"
+        android:onClick="btnZurueck"
+        android:text="Zurück"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
