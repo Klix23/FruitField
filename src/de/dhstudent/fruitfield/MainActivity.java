@@ -143,8 +143,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void btnZurueck(View view) {
-		setContentView(R.layout.welcome_gui); // Funktion Zurück-Button bei den
-												// Spielregeln
+		setContentView(R.layout.welcome_gui); // Funktion Zurück-Button bei den Spielregeln
+		loadHighscore();
 	}
 
 	public void Klick(View view) {
